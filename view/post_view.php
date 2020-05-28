@@ -40,9 +40,9 @@
     function init() {
 
       // Google Mapで利用する初期設定用の変数
-      var latlng = new google.maps.LatLng(35.681187, 139.766947);
+      var latlng = new google.maps.LatLng(35.702969, 139.579765);
       var opts = {
-        zoom: 12,
+        zoom: 15,
         center: latlng,
         disableDefaultUI: true,
         zoomControl: true,
@@ -156,6 +156,7 @@
           <p><input type="text" name="place_name" placeholder="地名"><br>
           <p><textarea name="comment" rows="5" cols="40" placeholder="文章を入力(営業時間など)"></textarea><br>
           <p><input type="text" name="url" placeholder="URL"><br>
+          <p><input type="text" name="cayegory" placeholder="1:遊び,2:休む,3:食べる"></p>
           <table>
             <tr><th>緯度</th><td id="show_lat"></td></tr>
             <tr><th>経度</th><td id="show_lng"></td></tr>
