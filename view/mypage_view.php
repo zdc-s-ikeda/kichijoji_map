@@ -215,7 +215,7 @@
                     request.value = place_name;
                     
                     hidden.type = 'hidden';
-                    hidden.name = 'place_name';
+                    hidden.name = 'place_id';
                     hidden.value = place_id;
                     
                     //要素に要素を追加

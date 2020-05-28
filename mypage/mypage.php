@@ -20,6 +20,7 @@ $link = get_db_connect();
 
 //post_places_tableの値を$itemsに格納
 $items = get_post_place($link);
+
 //$itemsをjs形式に変換(itemsには、name, comment, imgが一つずつ入っている)
 $items_json = json_encode($items, JSON_HEX_TAG | JSON_HEX_AMP | JSON_HEX_APOS | JSON_HEX_QUOT);
 
