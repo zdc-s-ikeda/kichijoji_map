@@ -3,6 +3,7 @@
 require_once '../model/function_user_page2.php';
 require_once '../conf/const.php';
 
+
 $link = get_db_connect();
 
 // $categoryの初期化
