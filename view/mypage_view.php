@@ -91,13 +91,13 @@
     
     <div id="main">
     <section id="center">
-    <form method="post"　action="mypage.php">
-    <div id="category">
-    <button name="category" value="1">あそび</button>
-    <button name="category" value="2">食事</button>
-    <button name="category" value="3">休憩</button>
-    </div>
-    </form>
+    <!--<form method="post"　action="mypage.php">-->
+    <!--<div id="category">-->
+    <!--<button name="category" value="1">あそび</button>-->
+    <!--<button name="category" value="2">食事</button>-->
+    <!--<button name="category" value="3">休憩</button>-->
+    <!--</div>-->
+    <!--</form>-->
     <div id="map_box"></div>
       
     <div id="message">
@@ -155,7 +155,7 @@
           <td>URL：<a href="<?php print h($list_item['url']); ?>"><?php print h($list_item['url']); ?></a></label></td>
         </tr>
         <tr>
-          <td><img src=<?php print "../images/" . h($list_item['img']); ?>" class="side_img"></td>
+          <td><img src="<?php print "../images/" . h($list_item['img']); ?>" class="side_img"></td>
           <td>コメント：<?php print h($list_item['comment']); ?></td>
         </tr>
         <?php } ?>
