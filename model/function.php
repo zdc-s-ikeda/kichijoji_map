@@ -87,7 +87,7 @@ function insert_to_place_list_table($link, $place_id, $user_id) {
     $log = date('Y-m-d h:i:s');
     $sql ="
         INSERT INTO
-            place_list_table
+            list_table
             (place_id, 
             user_id, 
             place_order,
@@ -108,11 +108,11 @@ function get_list($route_id, $link) {
             SELECT
                 place_name
             FROM
-                place_list_table
+                list_table
             JOIN
                 post_place_table
             ON
-                place_list_table.place_id = post_place_table.place_id
+                list_table.place_id = post_place_table.place_id
             WHERE
                 route_id = '{$route_id}'
             
@@ -143,13 +143,13 @@ function get_side_items($route_id, $link) {
             FROM
                 route_table
             JOIN
-                place_list_table
+                list_table
             ON
-                route_table.route_id = place_list_table.route_id
+                route_table.route_id = list_table.route_id
             JOIN
                 post_place_table
             ON
-                place_list_table.place_id = post_place_table.place_id
+                list_table.place_id = post_place_table.place_id
             WHERE
                 route_table.route_id = '{$route_id}'
             ";
