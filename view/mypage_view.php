@@ -161,6 +161,10 @@
 
     <script>
       function init(){
+        var kichijoji = {
+                    lat: 35.7031754,
+                    lng: 139.5713603
+                };
         //$itemsをjs形式で呼び出し
         var items = JSON.parse('<?php echo $items_json; ?>');
         
@@ -170,45 +174,73 @@
         var map = new google.maps.Map(
           map_box,
           {
-            center: new google.maps.LatLng(items[0]["lat"],items[0]["lng"]),
+            center: kichijoji,
             zoom: 12,
             disableDefaultUI: true,
             zoomControl: true,
             clickableIcons: false,
           }
-        )
+        );
         
         //マーカーを立てる
         var markers = [];
         for (var item of items) {
               
-          //マーカーを立てる
-          var added_marker = new google.maps.Marker({
-            map: map,
-            position: new google.maps.LatLng(item["lat"],item["lng"])
+        //マーカーを立てる
+        var added_marker = new google.maps.Marker({
+          map: map,
+          position: new google.maps.LatLng(item["lat"],item["lng"])
           });
           
-          //インフォメーションウィンドウの表示
-          var added_info_window = new google.maps.InfoWindow({
-            content: item['place_name'] + '<br>'
+          //マーカーを配列にpushして代入
+        markers.push(added_marker);
+        
+        //インフォメーションウィンドウの表示
+        var infoWindow = new google.maps.InfoWindow({
+          content: item["place_name"]
           });
+          
+        //インフォウィンドウを開く
+        infoWindow.open(map, added_marker);
         
         var btn = document.createElement("button");
-        btn.innerText = item['place_name'];
+        btn.innerText = item["place_name"];
         google.maps.event.addDomListener(btn,"click", function(){
-          added_info_window.setContent("aiueo")
+          infoWindow.setContent("aiueo")
         });
         
-        //ボタンをcontentにセット
-        added_info_window.setContent(btn);
+        var place_name = item["place_name"];
+        var place_id = item["place_id"];
         
-        //インフォウィンドウを開く
-        added_info_window.open(map, added_marker);
+        function postForm(place_name, place_id) {
+                    //要素を作成
+                    var form = document.createElement('form');
+                    var request = document.createElement('input');
+                    var hidden = document.createElement('input');
+                    
+                    //メソッド、パスを指定
+                    form.method = 'POST';
+                    //form.action = 'aatest.php';
+                    
+                    //タイプ等を指定
+                    request.type = 'submit';
+                    request.value = place_name;
+                    
+                    hidden.type = 'hidden';
+                    hidden.name = 'place_name';
+                    hidden.value = place_id;
+                    
+                    //要素に要素を追加
+                    form.appendChild(request);
+                    form.appendChild(hidden);
+                    return form;
+                }
+        infoWindow.setContent(postForm('value'));
         
-        //配列にpushして代入
+        //マーカーを配列にpushして代入
         markers.push(added_marker);
-            }
       }
+  }
     </script>
     
     <script src="https://maps.googleapis.com/maps/api/js?language=ja&region=JP&key=<?php echo API_KEY; ?>&callback=init" async defer></script>
