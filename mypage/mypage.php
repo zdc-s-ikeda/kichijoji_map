@@ -19,8 +19,6 @@ $link = get_db_connect();
 //user_name取得
 $user_info = get_user_info($link, $user_id);
 
-//カテゴリの取得
-$category = get_category($link);
 //リストに格納されたアイテムの表示
 $list_items = get_list($link, $user_id);
 

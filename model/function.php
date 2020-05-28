@@ -177,12 +177,3 @@ function dd($var) {
     return var_dump($var);
 }
 
-function get_category($link) {
-    $sql = "
-            SELECT
-                category
-            FROM
-                post_place_table
-            ";
-    return get_as_array($link, $sql);
-}
