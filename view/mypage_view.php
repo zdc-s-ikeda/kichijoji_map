@@ -91,6 +91,13 @@
     
     <div id="main">
     <section id="center">
+    <!--<form method="post"　action="mypage.php">-->
+    <!--<div id="category">-->
+    <!--<button name="category" value="1">あそび</button>-->
+    <!--<button name="category" value="2">食事</button>-->
+    <!--<button name="category" value="3">休憩</button>-->
+    <!--</div>-->
+    <!--</form>-->
     <div id="map_box"></div>
       
     <div id="message">
@@ -102,67 +109,64 @@
       <?php } ?>
     </div>
     
-    <div id="added">
-      <ul>
-        <?php foreach ($list_items as $list_item) { ?>
-        <li><?php print h($list_item['place_name']); ?></li>
-        <?php } ?>
-      </ul>
-    </div>
-    </section>
+    <!--<div id="added">-->
+    <!--  <ul>-->
+    <!--    <?php foreach ($list_items as $list_item) { ?>-->
+    <!--    <li><?php print h($list_item['place_name']); ?></li>-->
+    <!--    <?php } ?>-->
+    <!--  </ul>-->
+    <!--</div>-->
+    <!--</section>-->
 
-    <div id="add">
-      <label id="add_top_comment">行きたい場所をリストに追加</laber><br>
-      <?php foreach ($items as $item) { ?>
-        <form method="post" action="mypage.php">
-          <label id="place_name"><?php print h($item['place_name']) ?></label><br>
-          <label>　順番：<input id="place_order" type="text" name="place_order"></label>
-          <input type="hidden" name="place_id" value="<?php print h($item['place_id']); ?>">
-          <input id="list_add_button" type="submit" value="リストに追加"><br>
-          </label>
-        </form>
-      <?php } ?>
-    </div>
+    <!--<div id="add">-->
+    <!--  <label id="add_top_comment">行きたい場所をリストに追加</laber><br>-->
+    <!--  <?php foreach ($items as $item) { ?>-->
+    <!--    <form method="post" action="mypage.php">-->
+    <!--      <label id="place_name"><?php print h($item['place_name']) ?></label><br>-->
+    <!--      <label>　順番：<input id="place_order" type="text" name="place_order"></label>-->
+    <!--      <input type="hidden" name="place_id" value="<?php print h($item['place_id']); ?>">-->
+    <!--      <input id="list_add_button" type="submit" value="リストに追加"><br>-->
+    <!--      </label>-->
+    <!--    </form>-->
+    <!--  <?php } ?>-->
+    <!--</div>-->
     
-    <section id="sidebar">
+    <!--<section id="sidebar">-->
       
-      <p id="sidebar_list_name">リスト名：<?php print h($route_table[0]['route_name']); ?></p>
-      <form>
-      <a href="../user_page.php">投稿者：<?php print h($route_table[0]['user_id']); ?></a>
-      <input type="hidden" name="use_id" value="<?php print h($route_table[0]['user_id']); ?>">
-      </form>
+    <!--  <p id="sidebar_list_name">リスト名：<?php print h($route_table[0]['route_name']); ?></p>-->
+    <!--  <form>-->
+    <!--  <a href="../user_page.php">投稿者：<?php print h($route_table[0]['user_id']); ?></a>-->
+    <!--  <input type="hidden" name="use_id" value="<?php print h($route_table[0]['user_id']); ?>">-->
+    <!--  </form>-->
       
-      <!--<div class="side_item">-->
-      <!--<?php foreach ($side_items as $side_item) { ?>-->
-      <!--<p></p><?php print h($side_item['place_name']); ?>-->
-      <!--<label>URL：<a href="<?php print h($side_item['url']); ?>"><?php print h($side_item['url']); ?></a></label></p>-->
-      <!--<img src="../images/<?php print h($side_item['img']); ?>" class="side_img">-->
-      <!--<p>コメント：<?php print h($side_item['comment']); ?></p>-->
-      <!--<?php } ?>-->
-      <!--</div>-->
+    <!--  <div class="side_item">-->
+    <!--  <?php foreach ($list_items as $list_item) { ?>-->
+    <!--  <p></p><?php print h($list_item['place_name']); ?>-->
+    <!--  <label>URL：<a href="<?php print h($list_item['url']); ?>"><?php print h($list_item['url']); ?></a></label></p>-->
+    <!--  <img src="../images/<?php print h($list_item['img']); ?>" class="side_img">-->
+    <!--  <p>コメント：<?php print h($list_item['comment']); ?></p>-->
+    <!--  <?php } ?>-->
+    <!--  </div>-->
       
       <table class="side_item">
-        <?php foreach ($side_items as $side_item) { ?>
+        <?php foreach ($list_items as $list_item) { ?>
         <tr>
-          <td id="place_name"><?php print h($side_item['place_name']); ?></td>
-          <td>URL：<a href="<?php print h($side_item['url']); ?>"><?php print h($side_item['url']); ?></a></label></td>
+          <td id="place_name"><?php print h($list_item['place_name']); ?></td>
+          <td>URL：<a href="<?php print h($list_item['url']); ?>"><?php print h($list_item['url']); ?></a></label></td>
         </tr>
         <tr>
-          <td><img src="../images/<?php print h($side_item['img']); ?>" class="side_img"></td>
-          <td>コメント：<?php print h($side_item['comment']); ?></td>
+          <td><img src="<?php print "../images/" . h($list_item['img']); ?>" class="side_img"></td>
+          <td>コメント：<?php print h($list_item['comment']); ?></td>
         </tr>
         <?php } ?>
       </table>
-      
     </section>
     </div>
-
-    
 
     <script>
       function init(){
         //$itemsをjs形式で呼び出し
-        var items = JSON.parse('<?php echo $items_json; ?>');
+        var items = JSON.parse('<?php echo $list_items_json; ?>');
         
         //map_box要素を取得
         var map_box = document.getElementById('map_box');

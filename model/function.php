@@ -88,13 +88,13 @@ function insert_to_place_list_table($link, $place_id, $place_order, $route_id) {
     $sql ="
         INSERT INTO
             place_list_table
-            (route_id, 
+            (user_id, 
             place_id, 
             place_order,
             created_date,
             updated_date)
         VALUES(
-            '{$route_id}',
+            '{$user_id}',
             '{$place_id}',
             '{$place_order}',
             '{$log}',
@@ -103,10 +103,10 @@ function insert_to_place_list_table($link, $place_id, $place_order, $route_id) {
         return do_query($link, $sql);
 }
 
-function get_list($route_id, $link) {
+function get_list($link, $user_id) {
     $sql = "
             SELECT
-                place_name
+                place_name, comment, img, url
             FROM
                 place_list_table
             JOIN
@@ -114,11 +114,11 @@ function get_list($route_id, $link) {
             ON
                 place_list_table.place_id = post_place_table.place_id
             WHERE
-                route_id = '{$route_id}'
+                place_list_table.user_id= '{$user_id}'
             
-            "; //今後ユーザーが複数のルートを選択できるようにする。
+            "; 
     $list_items = get_as_array($link, $sql);
-
+    dd($sql);
     return $list_items;
 }
 
@@ -160,6 +160,23 @@ function redirect_to($url){
     header('Location: ' . $url);
     exit;
 }
+
+function get_user_info($link, $user_id) {
+    $sql = "
+            SELECT
+                *
+            FROM
+                users_table
+            WHERE
+                user_id = '{$user_id}'
+            ";
+    return get_as_row($link, $sql);
+}
+
+function dd($var) {
+    return var_dump($var);
+}
+
 function get_favarite_route($link) {
     $sql = "
             SELECT
