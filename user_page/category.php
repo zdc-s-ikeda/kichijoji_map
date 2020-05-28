@@ -1,12 +1,12 @@
 <?php
 
-require_once '../model/function_user_page2.php';
+require_once '../model/function_category.php';
 require_once '../conf/const2.php';
 
 $link = get_db_connect();
 
 // $categoryの初期化
-$category = 0;
+$category = '';
 
 if (is_post() === TRUE) {
     $category = get_post('category');
@@ -22,4 +22,4 @@ var_dump($list_items);
 //db切断
 close_db_connect($link);
 
-include_once '../view/user_page_view2.php';
+include_once '../view/category_view.php';

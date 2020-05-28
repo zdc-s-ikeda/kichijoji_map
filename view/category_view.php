@@ -1,6 +1,6 @@
 <?php
 require_once '../conf/const2.php';
-require_once '../model/function_user_page2.php';
+require_once '../model/function_category.php';
 
 ?>
 <!DOCTYPE html>
@@ -20,10 +20,10 @@ require_once '../model/function_user_page2.php';
   
   <form action="user_page.php" method="post">
     <select name="category">
-      <option value = 0 <?php if($category === 0) { print 'selected'; } ?>>カテゴリーを選んでください</option>
-      <option value = 1 <?php if($category === 1) { print 'selected'; } ?>>遊び</option>
-      <option value = 2 <?php if($category === 2) { print 'selected'; } ?>>休憩</option>
-      <option value = 3 <?php if($category === 3) { print 'selected'; } ?>>ご飯</option>
+      <option value = "0" <?php if($category === '0') { print 'selected'; } ?>>カテゴリーを選んでください</option>
+      <option value = "1" <?php if($category === '1') { print 'selected'; } ?>>遊び</option>
+      <option value = "2" <?php if($category === '2') { print 'selected'; } ?>>休憩</option>
+      <option value = "3" <?php if($category === '3') { print 'selected'; } ?>>ご飯</option>
     </select>
     <input type="submit" value="送信">
   </form>
