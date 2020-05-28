@@ -1,7 +1,7 @@
 <?php
 
 require_once '../model/function_user_page2.php';
-require_once '../conf/const2.php';
+require_once '../conf/const.php';
 
 $link = get_db_connect();
 

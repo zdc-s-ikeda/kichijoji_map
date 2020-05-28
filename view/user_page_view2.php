@@ -1,8 +1,4 @@
-<?php
-require_once '../conf/const2.php';
-require_once '../model/function_user_page2.php';
 
-?>
 <!DOCTYPE html>
 <html lang="ja">
 <head>

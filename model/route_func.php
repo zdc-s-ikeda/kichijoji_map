@@ -190,3 +190,7 @@ function is_post(){
 function set_time(){
     return date('Y-m-d H:i:s');
 }
+
+function is_category($value){
+    return preg_match('/[123]/', $value) === 1;
+}

@@ -36,6 +36,12 @@ if (is_post() === TRUE) {
        $errors[] = '場所を指定してください';
     }
     $category = get_post('category');
+    if(is_blank($category) === TRUE){
+        $errors[] = 'カテゴリーを選択してください';
+    }else if(is_category($category) !== TRUE){
+        $errors[] = 'カテゴリーは1~3で選んでください';
+    }
+    
     //ファイルがアップロードされたかの確認
     if (is_uploaded_file($_FILES['img']['tmp_name']) === TRUE) {
         //  画像タイプ取得
