@@ -30,19 +30,12 @@ $list_items_json = json_encode($list_items, JSON_HEX_TAG | JSON_HEX_AMP | JSON_H
 //$items_json = json_encode($items, JSON_HEX_TAG | JSON_HEX_AMP | JSON_HEX_APOS | JSON_HEX_QUOT);
 
 
-//db切断
-close_db_connect($link);
-
-
-//postされてきた値をリストに追加
+//postされてきた場所をリストに追加
 if (is_post() === TRUE) {
     
     //値を受け取り
     $place_id = get_post('place_id');
     $place_order = get_post('place_order');
-    
-    //db接続
-    $link = get_db_connect();
     
     //リストに場所を追加
     $result = insert_to_place_list_table($link, $place_id, $place_order, $user_id);
@@ -52,7 +45,6 @@ if (is_post() === TRUE) {
     } else {
         $messages[] = 'リストに追加成功';
     }
-    
     
     //db切断
     close_db_connect($link);
