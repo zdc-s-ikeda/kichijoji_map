@@ -182,10 +182,12 @@
           }
         );
         
-        //マーカーを立てる
+        //post_place_tableの数だけマーカーを立てる
         var markers = [];
         for (var item of items) {
               
+        var i = 0;
+        
         //マーカーを立てる
         var added_marker = new google.maps.Marker({
           map: map,
@@ -196,11 +198,17 @@
         var infoWindow = new google.maps.InfoWindow({
           content: item["place_name"]
           });
+          
+        added_marker.addListener('click', 
+        function () {
+          infoWindow.open(map, this);
+        });
         
         var place_name = item["place_name"];
         var place_id = item["place_id"];
         
         function postForm(place_name, place_id) {
+                    
                     //要素を作成
                     var form = document.createElement('form');
                     var request = document.createElement('input');
@@ -224,9 +232,6 @@
                     return form;
                 }
         infoWindow.setContent(postForm(place_name, place_id));
-        
-        //インフォウィンドウを開く
-        infoWindow.open(map, added_marker);
         
         //マーカーを配列にpushして代入
         markers.push(added_marker);
