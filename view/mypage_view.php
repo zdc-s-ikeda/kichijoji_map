@@ -174,7 +174,7 @@
         var map = new google.maps.Map(
           map_box,
           {
-            center: new google.maps.LatLng(items[0]["lat"],items[0]["lng"]),
+            center: new google.maps.LatLng(35.702969, 139.579765),
             zoom: 12,
             disableDefaultUI: true,
             zoomControl: true,

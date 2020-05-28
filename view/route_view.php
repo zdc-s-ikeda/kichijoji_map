@@ -64,9 +64,6 @@
     <li><a href="../post/post.php"><img class="icon" src="../view/post.png" alt="投稿"></a></li>
     </div>
     
-    <section id="sidebar">
-    <p id="sidebar_list">リスト一覧</p>
-    </section>
     
     <h2>一覧</h2>
       <?php if(count($post_place_list) > 0){ ?>
@@ -75,7 +72,6 @@
                 <tr>
                     <th>場所名</th>
                     <th>コメント</th>
-                    <th>URL</th>
                     <th>表示</th>
                     <th>順番</th>
                     <th></th>
@@ -84,9 +80,8 @@
             <tbody>
                 <?php foreach($post_place_list as $place){ ?>
                     <tr>
-                        <td><?php echo h($place['place_name']); ?></td>
+                        <td><a href="<?php echo h($place['url']); ?>"><?php echo h($place['place_name']); ?></a></td>
                         <td><?php echo h($place['comment']); ?></td>
-                        <td><a href="<?php echo h($place['url']); ?>"><?php echo h($place['url']); ?></a></td>
                         <td>
                             <button
                                 class="display"
@@ -137,68 +132,6 @@
             clickableIcons: false,
           }
         );
-        // // ジオコーダーの生成
-        // var geocoder = new google.maps.Geocoder();
-        // document.getElementById('search')
-        //   .addEventListener(
-        //     'click',
-        //     function(){
-        //       geocoder.geocode(
-        //         // 第一引数にジオコーディングのオプションを設定
-        //         {
-        //           address: document.getElementById('address').value
-        //         },
-        //         // 第二引数に結果取得時の動作を設定
-        //         function(results, status){
-        //           // 失敗時の処理
-        //           if(status !== 'OK'){
-        //             alert('ジオコーディングに失敗しました。結果: ' + status);
-        //             return;
-        //           }
-        //           // 成功した場合、resultsの0番目に結果が取得される。
-        //           if(!results[0]){
-        //             alert('結果が取得できませんでした');
-        //             return;
-        //           }
-        //           // マップの中心を移動
-        //           map.panTo(results[0].geometry.location);
-        
-        //           document.getElementById('search_result').innerHTML = results[0].formatted_address;
-        //         }
-        //       );
-        //     }
-        //   );
-        
-        // // クリック位置をリバースジオコーディング
-        // map.addListener('click', function(e){
-        //   geocoder.geocode({
-        //     location: e.latLng
-        //   }, function(results, status){
-        //     if(status !== 'OK'){
-        //       alert('リバースジオコーディングに失敗しました。結果: ' + status);
-        //       return;
-        //     }
-        
-        //     // console.log(results);
-        //     if(!results[0]){
-        //       alert('結果が取得できませんでした。');
-        //       return;
-        //     }
-        
-        //     // クリックした位置にマーカーを立てる
-        //     var added_marker = new google.maps.Marker({
-        //       position: e.latLng, // クリックした箇所
-        //       map: map,
-        //       animation: google.maps.Animation.DROP
-        //     });
-        //     // マーカーに情報ウィンドウを紐付け、
-        //     // リバースジオコーディングで取得した住所を表示する。
-        //     var infoWindow = new google.maps.InfoWindow({
-        //       content: results[0].formatted_address,
-        //     });
-        //     infoWindow.open(map, added_marker);
-        //   })
-        // });
         var display_buttons = Array.from(document.getElementsByClassName('display'));
         //各ボタンにイベントを設定
         display_buttons.forEach(
