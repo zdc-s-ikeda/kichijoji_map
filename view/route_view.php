@@ -75,7 +75,6 @@
                 <tr>
                     <th>場所名</th>
                     <th>コメント</th>
-                    <th>URL</th>
                     <th>表示</th>
                     <th>順番</th>
                     <th></th>
@@ -84,9 +83,8 @@
             <tbody>
                 <?php foreach($post_place_list as $place){ ?>
                     <tr>
-                        <td><?php echo h($place['place_name']); ?></td>
+                        <td><a href="<?php echo h($place['url']); ?>"><?php echo h($place['place_name']); ?></a></td>
                         <td><?php echo h($place['comment']); ?></td>
-                        <td><a href="<?php echo h($place['url']); ?>"><?php echo h($place['url']); ?></a></td>
                         <td>
                             <button
                                 class="display"
