@@ -191,23 +191,11 @@
           map: map,
           position: new google.maps.LatLng(item["lat"],item["lng"])
           });
-          
-          //マーカーを配列にpushして代入
-        markers.push(added_marker);
         
         //インフォメーションウィンドウの表示
         var infoWindow = new google.maps.InfoWindow({
           content: item["place_name"]
           });
-          
-        //インフォウィンドウを開く
-        infoWindow.open(map, added_marker);
-        
-        var btn = document.createElement("button");
-        btn.innerText = item["place_name"];
-        google.maps.event.addDomListener(btn,"click", function(){
-          infoWindow.setContent("aiueo")
-        });
         
         var place_name = item["place_name"];
         var place_id = item["place_id"];
@@ -235,7 +223,10 @@
                     form.appendChild(hidden);
                     return form;
                 }
-        infoWindow.setContent(postForm('value'));
+        infoWindow.setContent(postForm(place_name, place_id));
+        
+        //インフォウィンドウを開く
+        infoWindow.open(map, added_marker);
         
         //マーカーを配列にpushして代入
         markers.push(added_marker);

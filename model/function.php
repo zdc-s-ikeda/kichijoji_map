@@ -73,7 +73,7 @@ function get_db_connect() {
 //
 
 //post_places_tableを表示
-function get_post_places($link) {
+function get_post_place($link) {
     $sql = "
         SELECT
             *
