@@ -1,7 +1,6 @@
 <?php
 require_once '../conf/const.php';
 require_once '../model/function.php';
-require_once '../model/top_function.php';
 
 
 $link = get_db_connect();
