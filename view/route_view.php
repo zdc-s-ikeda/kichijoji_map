@@ -101,7 +101,6 @@
                             <div>
                               <input id="place_order" type="number" name="place_order" value="<?php echo h($place['place_order']); ?>">
                               <input type="hidden" name="place_id" value="<?php echo h($place['place_id']); ?>">
-                              <input type="hidden" name="route_id" value="<?php echo h($place['route_id']); ?>">
                               <input class="post_place_list_button" type="submit" value="変更">
                             </div>
                           </form>
@@ -109,7 +108,6 @@
                         <td>
                           <form method="post" action="../route/place_list_delete.php">
                             <input type="hidden" name="place_id" value="<?php echo h($place['place_id']); ?>">
-                            <input type="hidden" name="route_id" value="<?php echo h($place['route_id']); ?>">
                             <input class="post_place_list_button" type="submit" value="削除">
                           </form>
                         </td>
@@ -133,7 +131,7 @@
           map_box,
           {
             center: new google.maps.LatLng(place_list[0]["lat"],place_list[0]["lng"]),
-            zoom: 12,
+            zoom: 15,
             disableDefaultUI: true,
             zoomControl: true,
             clickableIcons: false,
