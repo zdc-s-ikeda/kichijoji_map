@@ -128,7 +128,7 @@ function update_place($place_id, $place_order, $link){
     return result_query($link, $sql);
 }
 
-function update_place_orders($place_id, $place_order, $link){
+function update_place_orders($place_id, $place_order, $route_id, $link){
     $sql = "UPDATE
                 place_list_table
             SET
@@ -138,7 +138,10 @@ function update_place_orders($place_id, $place_order, $link){
             AND
                 place_order < '{$place_order}'
             AND
-                place_id != '{$place_id}'";
+                place_id != '{$place_id}'
+            AND
+                route_id = '{$route_id}'";
+                dd($sql);
     return result_query($link, $sql);
 }
 

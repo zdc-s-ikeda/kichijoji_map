@@ -8,12 +8,17 @@ if(is_post() === true){
 
     $place_id = get_post('place_id');
     $place_order = get_post('place_order');
-
+    $route_id = 1;
     if($place_id !== ''){
         $link = get_db_connect();
         if(update_place($place_id, $place_order, $link) === false){
             close_db_connect($link);
             exit('順番の更新に失敗しました。');
+        }else{
+            if(update_place_orders($place_id, $place_order, $route_id, $link) === false){
+                close_db_connect($link);
+                exit('順番の更新に失敗しました。');
+            }
         }
         close_db_connect($link);
     }

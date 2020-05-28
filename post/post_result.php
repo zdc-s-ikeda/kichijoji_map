@@ -35,6 +35,7 @@ if (is_post() === TRUE) {
     if(is_blank($lat) === TRUE){
        $errors[] = '場所を指定してください';
     }
+    $category = get_post('category');
     //ファイルがアップロードされたかの確認
     if (is_uploaded_file($_FILES['img']['tmp_name']) === TRUE) {
         //  画像タイプ取得
@@ -68,7 +69,7 @@ if (is_post() === TRUE) {
     }
     if(count($errors) === 0){
         $link = get_db_connect();
-        if(insert_post_place($place_name, $user_id, $comment, $img, $lat, $lng, $url, $link) === FALSE){
+        if(insert_post_place($place_name, $user_id, $comment, $img, $lat, $lng, $url, $category, $link) === FALSE){
             $errors[] = 'insert_post_place失敗';
         }
     }
