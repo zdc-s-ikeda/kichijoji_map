@@ -21,6 +21,7 @@
       <option value = "2" <?php if($category === '2') { print 'selected'; } ?>>休憩</option>
       <option value = "3" <?php if($category === '3') { print 'selected'; } ?>>ご飯</option>
     </select>
+    <input type="hidden" name="sql_kind" value="category">
     <input type="submit" value="送信">
   </form>
   <a href="../login/logout.php">ログアウト</a>

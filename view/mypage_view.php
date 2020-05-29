@@ -94,13 +94,16 @@
     
     <div id="main">
     <section id="center">
-    <!--<form method="post"　action="mypage.php">-->
-    <!--<div id="category">-->
-    <!--<button name="category" value="1">あそび</button>-->
-    <!--<button name="category" value="2">食事</button>-->
-    <!--<button name="category" value="3">休憩</button>-->
-    <!--</div>-->
-    <!--</form>-->
+      <form action="../mypage/mypage.php" method="post">
+        <select name="category">
+          <option value = "0" <?php if($category === '0') { print 'selected'; } ?>>カテゴリーを選んでください</option>
+          <option value = "1" <?php if($category === '1') { print 'selected'; } ?>>遊び</option>
+          <option value = "2" <?php if($category === '2') { print 'selected'; } ?>>休憩</option>
+          <option value = "3" <?php if($category === '3') { print 'selected'; } ?>>ご飯</option>
+        </select>
+        <input type="hidden" name="sql_kind" value="category">
+        <input type="submit" value="送信">
+      </form>
     <div id="map_box"></div>
       
     <div id="message">
