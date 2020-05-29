@@ -65,8 +65,7 @@
       #sidebar {
         color: #ffffff;
         background-color: #f8b400;
-        width: 350px;
-        height: 1000px;
+        width: auto;
       }
       #sidebar_list_name {
         font-size: 25px;
@@ -149,7 +148,7 @@
         </tr>
         <tr>
           <td><img src="<?php print "../images/" . h($list_item['img']); ?>" class="side_img"></td>
-          <td>コメント：<?php print h($list_item['comment']); ?></td>
+          <td>コメント：<?php print nl2br(h($list_item['comment'])); ?></td>
         </tr>
         <?php } ?>
       </table>
