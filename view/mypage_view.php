@@ -110,20 +110,6 @@
       </ul>
     </div>
     </section>
-
-    <div id="add">
-      <label id="add_top_comment">行きたい場所をリストに追加</laber><br>
-      <?php foreach ($items as $item) { ?>
-        <form method="post" action="mypage.php">
-          <label id="place_name"><?php print h($item['place_name']) ?></label><br>
-          <label>　順番：<input id="place_order" type="text" name="place_order"></label>
-          <input type="hidden" name="place_id" value="<?php print h($item['place_id']); ?>">
-          <input id="list_add_button" type="submit" value="リストに追加"><br>
-          </label>
-        </form>
-      <?php } ?>
-    </div>
-    
     <section id="sidebar">
       
       <p id="sidebar_list_name">リスト名：<?php print h($route_table[0]['route_name']); ?></p>
@@ -197,24 +183,35 @@
           
           //インフォメーションウィンドウの表示
           let infoWindow = new google.maps.InfoWindow({
-            content: postForm(place_name, place_id)
+            content: postForm(items[i])
           });
+            
+          // var div_id = getElementById('form');
+          // div_id = postForm(place_id);
             
           //マーカーにイベントを追加
           marker.addListener('click', function() {
             infoWindow.open(map, marker);
           });
-          
+        
           //マーカーを配列にpushして代入
           markers.push(marker);
         }
         
-        function postForm(place_id) {
+        function postForm(item) {
                       
             //要素を作成
             var form = document.createElement('form');
             var request = document.createElement('input');
             var hidden = document.createElement('input');
+            var div = document.createElement('div');
+            var img = document.createElement('img');
+            var p = document.createElement('p');
+            
+            img.src = '../images/' + item['img'];
+            img.className = 'icon';
+            
+            p.innerHTML = item['place_name'];
             
             //メソッド、パスを指定
             form.method = 'POST';
@@ -226,12 +223,15 @@
             
             hidden.type = 'hidden';
             hidden.name = 'place_id';
-            hidden.value = place_id;
+            hidden.value = item['place_id'];
             
             //要素に要素を追加
             form.appendChild(request);
             form.appendChild(hidden);
-            return form;
+            div.appendChild(p);
+            div.appendChild(img);
+            div.appendChild(form);
+            return div;
         }
   }
     </script>
