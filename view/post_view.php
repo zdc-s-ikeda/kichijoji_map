@@ -162,15 +162,16 @@
     </header>
     <div id="post">
       <form action="../post/post_result.php" method="post" enctype="multipart/form-data">
-          <p><input type="text" name="place_name" placeholder="地名"><br>
+          <p><input type="text" name="place_name" placeholder="地名">(必須)<br>
           <p><textarea name="comment" rows="5" cols="40" placeholder="文章を入力(営業時間など)"></textarea><br>
           <p><input type="text" name="url" placeholder="URL"><br>
-          <p><input type="number" name="category" placeholder="1:遊び,2:休む,3:食べる"></p>
+          <p><input type="number" name="category" placeholder="1:遊び,2:休む,3:食べる">(必須)</p>
           <table>
+            <p>地図上にピンを立ててください
             <tr><th>緯度</th><td id="show_lat"></td></tr>
             <tr><th>経度</th><td id="show_lng"></td></tr>
           </table>
-          <input type="file" name="img">
+          <input type="file" name="img">(必須)
           <p><input type="submit" value="投稿"></p>
           <input type="hidden" name="lat" id="lat" value="">
           <input type="hidden" name="lng" id="lng" value="">

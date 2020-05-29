@@ -7,26 +7,31 @@
       header {
         background-color: #E4F9FF;
       }
-      li {
-        padding: 0px;
-        list-style: none;
-        display: inline;
-      }
       img {
         width: 7%;
         height: 7%;
       }
+      #map_bottom li {
+        display: inline;
+      }
+      #map_box {
+        width: 800px;
+        height: 500px;
+        text-align: center;
+        margin: 0 auto;
+      }
     </style>
 </head>
 <body>
-    <header>
-      <ul class="list">
-        <li><a href="../mypage/mypage.php"><img class="icon" src="../view/home.png" alt="ホーム"></a></li>
-        <li><a href="../mypage/mypage.php"><img class="icon" src="../view/mypage.png" alt="マイページ"></a></li>
-        <li><a href="../route/route.php"><img class="icon" src="../view/myroute.png" alt="マイルート"></a></li>
-        <li><a href="../post/post.php"><img class="icon" src="../view/post.png" alt="投稿"></a></li>
-      </ul>
-    </header>
+    <section id="header">
+      <label><img id="logo" src="../view/logo.png"></label>
+      <div id="map_bottom">
+      <li><a href="../mypage/mypage.php"><img class="icon" src="../view/home.png" alt="ホーム"></a></li>
+      <li><a href="../route/route.php"><img class="icon" src="../view/myroute_clicked.png" alt="マイルート"></a></li>
+      <li><a href="../post/post.php"><img class="icon" src="../view/post.png" alt="投稿"></a></li>
+      </div>
+    </section>
+    <p>現在修正中です</p>
     <div class="err-msg"><?php display_error($errors); ?></div>
     <div class="success-msg"><?php display_success($success); ?></div>
 </body>
