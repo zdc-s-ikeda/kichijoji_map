@@ -118,7 +118,6 @@ function get_list($link, $user_id) {
             
             "; 
     $list_items = get_as_array($link, $sql);
-    dd($sql);
     return $list_items;
 }
 
