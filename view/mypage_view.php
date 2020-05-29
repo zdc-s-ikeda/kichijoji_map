@@ -7,7 +7,9 @@
       
       body {
          color: #6b6b6b;
-         padding: 40px;
+         background-color: #faf5e4;
+         padding: 0px;
+         margin: 0px;
       }
       #map_box {
         width: 500px;
@@ -22,6 +24,7 @@
         word-wrap: break-word;
       }
       #header {
+        background-color: #f8b400;
         width: 100%;
       }
       #header_li li {
@@ -31,10 +34,11 @@
         display: flex;
       }
       .icon {
-        width: 100px;
+        width: 130px;
       }
       #center {
         flex: 1;
+        padding: 40px;
       }
       #add {
         width: 300px;
@@ -59,7 +63,7 @@
       }
       #sidebar {
         color: #ffffff;
-        background-color: #0fabbc;
+        background-color: #f8b400;
         width: 350px;
         height: 1000px;
       }
@@ -71,7 +75,7 @@
         font-weight: bold;
       }
       #logo {
-        width: 20%;
+        width: 45%;
       }
       #map_bottom li {
         display: inline;
@@ -82,8 +86,7 @@
     <section id="header">
     <label><img id="logo" src="../view/logo.png"></label>
       <div id="map_bottom">
-    <li><a href="../top/top.php"><img class="icon" src="../view/home.png" alt="ホーム"></a></li>
-    <li><a href="../mypage/mypage.php"><img class="icon" src="../view/mypage.png" alt="ホーム"></a></li>
+    <li><a href="../mypage/mypage.php"><img class="icon" src="../view/home_clicked.png" alt="ホーム"></a></li>
     <li><a href="../route/route.php"><img class="icon" src="../view/myroute.png" alt="マイルート"></a></li>
     <li><a href="../post/post.php"><img class="icon" src="../view/post.png" alt="投稿"></a></li>
     </div>

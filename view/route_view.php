@@ -6,7 +6,16 @@
     <style>
       body {
         color: #6b6b6b;
-        padding: 20px;
+        background-color: #faf5e4;
+        padding: 0px;
+        margin: 0px;
+      }
+      #header {
+        background-color: #f8b400;
+        width: 100%
+      }
+      #article1 {
+        padding: 40px;
       }
       #map_box {
         width: 500px;
@@ -16,8 +25,7 @@
         display: inline;
       }
       .icon {
-        width: 70px;
-        height: 70px;
+        width: 130px;
       }
       #place_order {
         width: 30px;
@@ -50,70 +58,72 @@
         text-align: center;
       }
       #logo {
-        width: 20%;
+        width: 45%;
       }
 
     </style>
 </head>
 <body>
-    <label><img id="logo" src="../view/logo.png"></label>
-    <div id="map_bottom">
-    <li><a href="../top/top.php"><img class="icon" src="../view/home.png" alt="ホーム"></a></li>
-    <li><a href="../mypage/mypage.php"><img class="icon" src="../view/mypage.png" alt="ホーム"></a></li>
-    <li><a href="../route/route.php"><img class="icon" src="../view/myroute.png" alt="マイルート"></a></li>
-    <li><a href="../post/post.php"><img class="icon" src="../view/post.png" alt="投稿"></a></li>
-    </div>
+    <section id="header">
+      <label><img id="logo" src="../view/logo.png"></label>
+      <div id="map_bottom">
+      <li><a href="../mypage/mypage.php"><img class="icon" src="../view/home.png" alt="ホーム"></a></li>
+      <li><a href="../route/route.php"><img class="icon" src="../view/myroute_clicked.png" alt="マイルート"></a></li>
+      <li><a href="../post/post.php"><img class="icon" src="../view/post.png" alt="投稿"></a></li>
+      </div>
+    </section>
     
-    
-    <h2>一覧</h2>
-      <?php if(count($post_place_list) > 0){ ?>
-        <table>
-            <thead>
-                <tr>
-                    <th>場所名</th>
-                    <th>コメント</th>
-                    <th>表示</th>
-                    <th>順番</th>
-                    <th></th>
-                </tr>
-            </thead>
-            <tbody>
-                <?php foreach($post_place_list as $place){ ?>
-                    <tr>
-                        <td><a href="<?php echo h($place['url']); ?>"><?php echo h($place['place_name']); ?></a></td>
-                        <td><?php echo h($place['comment']); ?></td>
-                        <td>
-                            <button
-                                class="display"
-                                data-lat="<?php echo h($place['lat']);?>"
-                                data-lng="<?php echo h($place['lng']);?>"
-                                data-name="<?php echo h($place['place_name']); ?>">
-                                表示
-                            </button>
-                        </td>
-                        <td>
-                          <form method="post" action="../route/place_order.php">
-                            <div>
-                              <input id="place_order" type="number" name="place_order" value="<?php echo h($place['place_order']); ?>">
+    <section id="article1">
+      <h2>一覧</h2>
+        <?php if(count($post_place_list) > 0){ ?>
+          <table>
+              <thead>
+                  <tr>
+                      <th>場所名</th>
+                      <th>コメント</th>
+                      <th>表示</th>
+                      <th>順番</th>
+                      <th></th>
+                  </tr>
+              </thead>
+              <tbody>
+                  <?php foreach($post_place_list as $place){ ?>
+                      <tr>
+                          <td><a href="<?php echo h($place['url']); ?>"><?php echo h($place['place_name']); ?></a></td>
+                          <td><?php echo h($place['comment']); ?></td>
+                          <td>
+                              <button
+                                  class="display"
+                                  data-lat="<?php echo h($place['lat']);?>"
+                                  data-lng="<?php echo h($place['lng']);?>"
+                                  data-name="<?php echo h($place['place_name']); ?>">
+                                  表示
+                              </button>
+                          </td>
+                          <td>
+                            <form method="post" action="../route/place_order.php">
+                              <div>
+                                <input id="place_order" type="number" name="place_order" value="<?php echo h($place['place_order']); ?>">
+                                <input type="hidden" name="place_id" value="<?php echo h($place['place_id']); ?>">
+                                <input class="post_place_list_button" type="submit" value="変更">
+                              </div>
+                            </form>
+                          </td>
+                          <td>
+                            <form method="post" action="../route/place_list_delete.php">
                               <input type="hidden" name="place_id" value="<?php echo h($place['place_id']); ?>">
-                              <input class="post_place_list_button" type="submit" value="変更">
-                            </div>
-                          </form>
-                        </td>
-                        <td>
-                          <form method="post" action="../route/place_list_delete.php">
-                            <input type="hidden" name="place_id" value="<?php echo h($place['place_id']); ?>">
-                            <input class="post_place_list_button" type="submit" value="削除">
-                          </form>
-                        </td>
-                    </tr>
-                <?php } ?>
-            </tbody>
-        </table>
-    <?php } else { ?>
-        <p>登録された場所はありません。</p>
-    <?php } ?>
-    </form>
+                              <input class="post_place_list_button" type="submit" value="削除">
+                            </form>
+                          </td>
+                      </tr>
+                  <?php } ?>
+              </tbody>
+          </table>
+      <?php } else { ?>
+          <p>登録された場所はありません。</p>
+      <?php } ?>
+      </form>
+    </section>
     
     <p id="search_result"></p>
     <div id="map_box"></div>
