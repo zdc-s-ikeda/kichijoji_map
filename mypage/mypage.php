@@ -49,11 +49,13 @@ if (is_post() === TRUE) {
     }
 } else {
     $items = get_post_place($user_id, $link);
-    var_dump($items);
-
 }
 //$itemsをjs形式に変換(itemsには、name, comment, imgが一つずつ入っている)
-$items_json = json_encode($items, JSON_HEX_TAG | JSON_HEX_AMP | JSON_HEX_APOS | JSON_HEX_QUOT);
+$items_json = json_encode($items, JSON_HEX_TAG | JSON_HEX_AMP | JSON_HEX_APOS | JSON_HEX_QUOT | JSON_UNESCAPED_UNICODE | JSON_PARTIAL_OUTPUT_ON_ERROR);
+$items_json = str_replace('\r\n', '<br>', $items_json);
+$items_json = str_replace('\n', '<br>', $items_json);
+$items_json = str_replace('　', '', $items_json);
+$items_json = str_replace('\t', '', $items_json);
 
 
 //自分のplace_list_tableリストに格納されたアイテムの表示
@@ -61,6 +63,8 @@ $list_items = get_list($user_id, $link);
 close_db_connect($link);
 
 $list_items_json = json_encode($list_items, JSON_HEX_TAG | JSON_HEX_AMP | JSON_HEX_APOS | JSON_HEX_QUOT);
+$list_items_json = str_replace('\n', '<br>', $list_items_json);
+
 
 //post_places_tableの情報取得
 //$items = get_post_places($link);
