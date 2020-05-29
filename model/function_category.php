@@ -67,42 +67,39 @@ function execute_query($link, $sql){
 }
 
 // 全部のものをJOINでもってくる
-function get_list($link) {
+function get_list($user_id, $link) {
     $sql = "
             SELECT
             *
             FROM
                 post_place_table
-            JOIN
-                users_table
-            ON
-                post_place_table.user_id = users_table.user_id
-            JOIN
-                place_list_table
-            ON
-                post_place_table.place_id = place_list_table.place_id
+            WHERE
+                post_place_table.user_id
+            IN
+                ('0','1','{$user_id}')
             ";
             
     return get_as_array($link, $sql);
 }
 
-function get_category ($category, $link) {
+function get_category ($category, $user_id, $link) {
     $sql = "
             SELECT
             *
             FROM
                 post_place_table
-            JOIN
-                users_table
-            ON
-                post_place_table.user_id = users_table.user_id
-            JOIN
-                place_list_table
-            ON
-                post_place_table.place_id = place_list_table.place_id
             WHERE
                 post_place_table.category = '{$category}'
+            AND
+                post_place_table.user_id 
+            IN 
+                ('0','1','{$user_id}')
             ";
             
     return get_as_array($link, $sql);
+}
+
+function redirect_to($url){
+    header('Location: ' . $url);
+    exit;
 }
