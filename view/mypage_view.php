@@ -171,7 +171,7 @@
           map_box,
           {
             center: kichijoji,
-            zoom: 17,
+            zoom: 15,
             disableDefaultUI: true,
             zoomControl: true,
             clickableIcons: false,

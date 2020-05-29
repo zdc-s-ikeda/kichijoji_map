@@ -18,8 +18,10 @@
         padding: 40px;
       }
       #map_box {
-        width: 500px;
+        width: 800px;
         height: 500px;
+        text-align: center;
+        margin: 0 auto;
       }
       #map_bottom li {
         display: inline;
