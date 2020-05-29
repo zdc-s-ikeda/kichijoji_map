@@ -187,54 +187,66 @@
         for (var item of items) {
               
         var i = 0;
+        var marker = [];
+        var infoWindow = [];
+        var place_name = item["place_name"];
+        var place_id = item["place_id"];
         
         //マーカーを立てる
-        var added_marker = new google.maps.Marker({
+        marker[i] = new google.maps.Marker({
           map: map,
           position: new google.maps.LatLng(item["lat"],item["lng"])
           });
         
         //インフォメーションウィンドウの表示
-        var infoWindow = new google.maps.InfoWindow({
+        infoWindow[i] = new google.maps.InfoWindow({
           content: item["place_name"]
           });
           
-        added_marker.addListener('click', 
-        function () {
-          infoWindow.open(map, this);
-        });
+        //マーカーにイベントを追加
+        markerEvent (i);
         
-        var place_name = item["place_name"];
-        var place_id = item["place_id"];
+        infoWindow[i].setContent(postForm(place_name, place_id));
+        
+        //マーカーを配列にpushして代入
+        markers.push(marker[i]);
+        i++;
         
         function postForm(place_name, place_id) {
+          
+                    var form = [];
+                    var request = [];
+                    var hidden = [];
                     
                     //要素を作成
-                    var form = document.createElement('form');
-                    var request = document.createElement('input');
-                    var hidden = document.createElement('input');
+                    form[i] = document.createElement('form');
+                    request[i] = document.createElement('input');
+                    hidden[i] = document.createElement('input');
                     
                     //メソッド、パスを指定
-                    form.method = 'POST';
+                    form[i].method = 'POST';
                     //form.action = 'aatest.php';
                     
                     //タイプ等を指定
-                    request.type = 'submit';
-                    request.value = place_name;
+                    request[i].type = 'submit';
+                    request[i].value = place_name;
                     
-                    hidden.type = 'hidden';
-                    hidden.name = 'place_id';
-                    hidden.value = place_id;
+                    hidden[i].type = 'hidden';
+                    hidden[i].name = 'place_id';
+                    hidden[i].value = place_id;
                     
                     //要素に要素を追加
-                    form.appendChild(request);
-                    form.appendChild(hidden);
-                    return form;
+                    form[i].appendChild(request[i]);
+                    form[i].appendChild(hidden[i]);
+                    return form[i];
                 }
-        infoWindow.setContent(postForm(place_name, place_id));
         
-        //マーカーを配列にpushして代入
-        markers.push(added_marker);
+        //マーカーにクリックイベントを追加
+        function markerEvent (i) {
+          marker[i].addListener('click', function() {
+            infoWindow[i].open(map, marker[i]);
+          });
+        }
       }
   }
     </script>
