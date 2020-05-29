@@ -18,7 +18,7 @@ require_once '../model/function_category.php';
 <body>
   <h1>暇な時間の過ごし方</h1>
   
-  <form action="user_page.php" method="post">
+  <form action="category.php" method="post">
     <select name="category">
       <option value = "0" <?php if($category === '0') { print 'selected'; } ?>>カテゴリーを選んでください</option>
       <option value = "1" <?php if($category === '1') { print 'selected'; } ?>>遊び</option>
