@@ -14,7 +14,7 @@
 <body>
   <h1>暇な時間の過ごし方</h1>
   
-  <form action="user_page.php" method="post">
+  <form action="category.php" method="post">
     <select name="category">
       <option value = "0" <?php if($category === '0') { print 'selected'; } ?>>カテゴリーを選んでください</option>
       <option value = "1" <?php if($category === '1') { print 'selected'; } ?>>遊び</option>
@@ -23,7 +23,7 @@
     </select>
     <input type="submit" value="送信">
   </form>
-  
+  <a href="../login/logout.php">ログアウト</a>
     <div id="map_box"></div>
 
     <!-- 上で設定した（入力した）API_KEYをここで出力し、init（イニシャライズ：何かの立ち上げに使われる）関数を実行 -->
@@ -41,8 +41,8 @@
           map_box, // 第１引数はマップ表示対象の要素。
           {
             // 第２引数で各種オプションを設定
-            center: new google.maps.LatLng(list_items[0]["lat"], list_items[0]["lng"]), // 地図の中心
-            zoom: 10, // 拡大のレベルを15に。（1 - 18くらい）
+            center: new google.maps.LatLng(35.702969, 139.579765), // 地図の中心
+            zoom: 15, // 拡大のレベルを15に。（1 - 18くらい）
             disableDefaultUI: true, // 各種UIをOFFに
             zoomControl: true, // 拡大縮小だけできるように
             clickableIcons: false, // クリック関連の機能をoffに。
