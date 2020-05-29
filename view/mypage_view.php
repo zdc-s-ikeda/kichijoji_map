@@ -167,7 +167,7 @@
                 };
         //$itemsをjs形式で呼び出し
         var items = JSON.parse('<?php echo $items_json; ?>');
-        
+        console.log(items);
         //map_box要素を取得
         var map_box = document.getElementById('map_box');
         //mapを表示
@@ -184,70 +184,55 @@
         
         //post_place_tableの数だけマーカーを立てる
         var markers = [];
-        for (var item of items) {
-              
-        var i = 0;
-        var marker = [];
-        var infoWindow = [];
-        var place_name = item["place_name"];
-        var place_id = item["place_id"];
-        
-        //マーカーを立てる
-        marker[i] = new google.maps.Marker({
-          map: map,
-          position: new google.maps.LatLng(item["lat"],item["lng"])
-          });
-        
-        //インフォメーションウィンドウの表示
-        infoWindow[i] = new google.maps.InfoWindow({
-          content: item["place_name"]
+        for (var i = 0; i < items.length; i++) {
+                
+          var place_name = items[i]["place_name"];
+          var place_id = items[i]["place_id"];
+          
+          //マーカーを立てる letは{}の中のみ有効　ブロックスコープ
+          let marker = new google.maps.Marker({
+            map: map,
+            position: new google.maps.LatLng(items[i]["lat"],items[i]["lng"])
           });
           
-        //マーカーにイベントを追加
-        markerEvent (i);
-        
-        infoWindow[i].setContent(postForm(place_name, place_id));
-        
-        //マーカーを配列にpushして代入
-        markers.push(marker[i]);
-        i++;
-        
-        function postForm(place_name, place_id) {
-          
-                    var form = [];
-                    var request = [];
-                    var hidden = [];
-                    
-                    //要素を作成
-                    form[i] = document.createElement('form');
-                    request[i] = document.createElement('input');
-                    hidden[i] = document.createElement('input');
-                    
-                    //メソッド、パスを指定
-                    form[i].method = 'POST';
-                    //form.action = 'aatest.php';
-                    
-                    //タイプ等を指定
-                    request[i].type = 'submit';
-                    request[i].value = place_name;
-                    
-                    hidden[i].type = 'hidden';
-                    hidden[i].name = 'place_id';
-                    hidden[i].value = place_id;
-                    
-                    //要素に要素を追加
-                    form[i].appendChild(request[i]);
-                    form[i].appendChild(hidden[i]);
-                    return form[i];
-                }
-        
-        //マーカーにクリックイベントを追加
-        function markerEvent (i) {
-          marker[i].addListener('click', function() {
-            infoWindow[i].open(map, marker[i]);
+          //インフォメーションウィンドウの表示
+          let infoWindow = new google.maps.InfoWindow({
+            content: postForm(place_name, place_id)
           });
+            
+          //マーカーにイベントを追加
+          marker.addListener('click', function() {
+            infoWindow.open(map, marker);
+          });
+          
+          //マーカーを配列にpushして代入
+          markers.push(marker);
         }
-      }
+        
+        function postForm(place_id) {
+                      
+            //要素を作成
+            var form = document.createElement('form');
+            var request = document.createElement('input');
+            var hidden = document.createElement('input');
+            
+            //メソッド、パスを指定
+            form.method = 'POST';
+            //form.action = 'aatest.php';
+            
+            //タイプ等を指定
+            request.type = 'submit';
+            request.value = 'リストに追加';
+            
+            hidden.type = 'hidden';
+            hidden.name = 'place_id';
+            hidden.value = place_id;
+            
+            //要素に要素を追加
+            form.appendChild(request);
+            form.appendChild(hidden);
+            return form;
+        }
   }
     </script>
     
