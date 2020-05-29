@@ -72,14 +72,36 @@ function get_db_connect() {
 //mypage.php
 //
 
-//post_places_tableを表示
-function get_post_place($link) {
+//post_places_tableを表示(カテゴリー指定なし)
+function get_post_place($user_id, $link) {
     $sql = "
-        SELECT
+            SELECT
             *
-        FROM
-            post_place_table
-        ";
+            FROM
+                post_place_table
+            WHERE
+                post_place_table.user_id
+            IN
+                ('0','1','{$user_id}')
+            ";
+    return get_as_array($link, $sql);
+}
+
+//カテゴリー指定
+function get_category ($category, $user_id, $link) {
+    $sql = "
+            SELECT
+            *
+            FROM
+                post_place_table
+            WHERE
+                post_place_table.category = '{$category}'
+            AND
+                post_place_table.user_id 
+            IN 
+                ('0','1','{$user_id}')
+            ";
+            
     return get_as_array($link, $sql);
 }
 
@@ -103,7 +125,7 @@ function insert_to_place_list_table($link, $place_id, $user_id) {
         return do_query($link, $sql);
 }
 
-function get_list($link, $user_id) {
+function get_list($user_id, $link) {
     $sql = "
             SELECT
                 place_name, comment, img, url
@@ -118,7 +140,6 @@ function get_list($link, $user_id) {
             
             "; 
     $list_items = get_as_array($link, $sql);
-    dd($sql);
     return $list_items;
 }
 

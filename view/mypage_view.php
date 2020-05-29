@@ -12,9 +12,10 @@
          margin: 0px;
       }
       #map_box {
-        width: 500px;
+        width: 800px;
         height: 500px;
         text-align: center;
+        margin: 0 auto;
       }
       .side_img {
         width: 100px;
@@ -94,13 +95,16 @@
     
     <div id="main">
     <section id="center">
-    <!--<form method="post"　action="mypage.php">-->
-    <!--<div id="category">-->
-    <!--<button name="category" value="1">あそび</button>-->
-    <!--<button name="category" value="2">食事</button>-->
-    <!--<button name="category" value="3">休憩</button>-->
-    <!--</div>-->
-    <!--</form>-->
+      <form action="../mypage/mypage.php" method="post">
+        <select name="category">
+          <option value = "0" <?php if($category === '0') { print 'selected'; } ?>>カテゴリーを選んでください</option>
+          <option value = "1" <?php if($category === '1') { print 'selected'; } ?>>遊び</option>
+          <option value = "2" <?php if($category === '2') { print 'selected'; } ?>>休憩</option>
+          <option value = "3" <?php if($category === '3') { print 'selected'; } ?>>ご飯</option>
+        </select>
+        <input type="hidden" name="sql_kind" value="category">
+        <input type="submit" value="送信">
+      </form>
     <div id="map_box"></div>
       
     <div id="message">
@@ -155,8 +159,8 @@
     <script>
       function init(){
         var kichijoji = {
-                    lat: 35.7031754,
-                    lng: 139.5713603
+                    lat: 35.702969,
+                    lng: 139.579765
                 };
         //$itemsをjs形式で呼び出し
         var items = JSON.parse('<?php echo $items_json; ?>');
@@ -168,7 +172,7 @@
           map_box,
           {
             center: kichijoji,
-            zoom: 12,
+            zoom: 17,
             disableDefaultUI: true,
             zoomControl: true,
             clickableIcons: false,
