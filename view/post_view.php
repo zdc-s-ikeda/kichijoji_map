@@ -4,17 +4,24 @@
     <meta charset="UTF-8">
     <title>投稿画面</title>
     <style type="text/css">
-
+      body {
+        color: #6b6b6b;
+        background-color: #faf5e4;
+        margin: 0px;
+      }
       #map { 
-        width: 800px;
+        width: 600px;
         height: 600px;
       }
       #post {
-        background-color: #CCFFFF;
+        padding: 30px;
         width: 800px;
       }
+      #place_map {
+        padding: 30px;
+      }
       header {
-        background-color: #E4F9FF;
+        background-color: #f8b400;
       }
       li {
         padding: 0px;
@@ -26,7 +33,10 @@
         height: 7%;
       }
       #logo {
-        width: 20%;
+        width: 45%;
+      }
+      .icon {
+        width: 130px;
       }
     </style>
 
@@ -145,10 +155,9 @@
     <header>
       <label><img id="logo" src="../view/logo.png"></label>
       <ul class="list">
-        <li><a href="../top/top.php"><img class="icon" src="../view/home.png" alt="ホーム"></a></li>
-        <li><a href="../mypage/mypage.php"><img class="icon" src="../view/mypage.png" alt="マイページ"></a></li>
+        <li><a href="../mypage/mypage.php"><img class="icon" src="../view/home.png" alt="ホーム"></a></li>
         <li><a href="../route/route.php"><img class="icon" src="../view/myroute.png" alt="マイルート"></a></li>
-        <li><a href="../post/post.php"><img class="icon" src="../view/post.png" alt="投稿"></a></li>
+        <li><a href="../post/post.php"><img class="icon" src="../view/post_clicked.png" alt="投稿"></a></li>
       </ul>
     </header>
     <div id="post">
@@ -167,12 +176,14 @@
           <input type="hidden" name="lng" id="lng" value="">
       </form>
     </div>
-    <p>
-      <input type="text" id="address" placeholder="場所名や住所">
-      <button id="search">検索</button>
-    </p>
-    <p id="search_result"></p>
-    <div id="map" style="height:560px"></div>
+    <div id="place_map">
+      <p>
+        <input type="text" id="address" placeholder="場所名や住所">
+        <button id="search">検索</button>
+      </p>
+      <p id="search_result"></p>
+      <div id="map" style="height:560px"></div>
+    </div>
   </body>
 
 </html>
