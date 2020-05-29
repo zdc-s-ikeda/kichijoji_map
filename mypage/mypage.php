@@ -45,7 +45,7 @@ if (is_post() === TRUE) {
         } else {
             $messages[] = 'リストに追加成功';
         }
-        $items = get_list($user_id, $link);
+        $items = get_post_place($user_id, $link);
     }
 } else {
     $items = get_post_place($user_id, $link);
