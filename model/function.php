@@ -73,7 +73,7 @@ function get_db_connect() {
 //
 
 //post_places_tableを表示
-function get_post_places($link) {
+function get_post_place($link) {
     $sql = "
         SELECT
             *
@@ -83,20 +83,20 @@ function get_post_places($link) {
     return get_as_array($link, $sql);
 }
 
-function insert_to_place_list_table($link, $place_id, $place_order, $route_id) {
+function insert_to_place_list_table($link, $place_id, $user_id) {
     $log = date('Y-m-d h:i:s');
     $sql ="
         INSERT INTO
             place_list_table
-            (user_id, 
-            place_id, 
+            (place_id, 
+            user_id, 
             place_order,
             created_date,
             updated_date)
         VALUES(
-            '{$user_id}',
             '{$place_id}',
-            '{$place_order}',
+            '{$user_id}',
+            1,
             '{$log}',
             '{$log}')
         ";
