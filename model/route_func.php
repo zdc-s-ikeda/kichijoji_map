@@ -78,7 +78,7 @@ function select_route($route_id,$link){
 }
 
 //place_list_table select
-function select_place_list($route_id, $link){
+function select_place_list($user_id, $link){
     $sql = "SELECT
                 place_name,
                 comment,
@@ -87,37 +87,41 @@ function select_place_list($route_id, $link){
                 lat,
                 lng,
                 url,
-                route_name,
+                category,
                 place_list_table.place_id,
-                place_order,
-                route_table.route_id
+                place_order
             FROM
                 place_list_table
             JOIN
                 post_place_table
             ON
                 place_list_table.place_id = post_place_table.place_id
-            JOIN
-                route_table
-            ON
-                place_list_table.route_id = route_table.route_id
             WHERE
-                place_list_table.route_id = '{$route_id}'
+                place_list_table.user_id = '{$user_id}'
             ORDER BY
                 place_order";
     return get_as_array($link, $sql);
 }
 
-function delete_place($place_id, $route_id, $link){
+function delete_place($place_id, $user_id, $link){
     $sql = "DELETE FROM
                 place_list_table
             WHERE
                 place_id = '{$place_id}'
             AND
-                route_id = '{$route_id}'";
+                user_id = '{$user_id}'";
     return result_query($link, $sql);
 }
 
+function select_place_order($place_id, $link){
+    $sql = "SELECT
+                place_order
+            FROM
+                place_list_table
+            WHERE
+                place_id = '{$place_id}'";
+    return get_as_row($link, $sql);
+}
 function update_place($place_id, $place_order, $link){
     $sql = "UPDATE
                 place_list_table
@@ -128,7 +132,7 @@ function update_place($place_id, $place_order, $link){
     return result_query($link, $sql);
 }
 
-function update_place_orders($place_id, $place_order, $link){
+function update_place_orders_down($place_id, $place_order, $old_place_order, $user_id, $link){
     $sql = "UPDATE
                 place_list_table
             SET
@@ -136,9 +140,26 @@ function update_place_orders($place_id, $place_order, $link){
             WHERE
                 place_order >= '{$place_order}'
             AND
-                place_order < '{$place_order}'
+                place_order < '{$old_place_order}'
             AND
-                place_id != '{$place_id}'";
+                place_id != '{$place_id}'
+            AND
+                user_id = '{$user_id}'";
+    return result_query($link, $sql);
+}
+function update_place_orders_up($place_id, $place_order, $old_place_order, $user_id, $link){
+    $sql = "UPDATE
+                place_list_table
+            SET
+                place_order = place_order - 1
+            WHERE
+                place_order > '{$old_place_order}'
+            AND
+                place_order <= '{$place_order}'
+            AND
+                place_id != '{$place_id}'
+            AND
+                user_id = '{$user_id}'";
     return result_query($link, $sql);
 }
 
@@ -168,4 +189,8 @@ function is_post(){
 
 function set_time(){
     return date('Y-m-d H:i:s');
+}
+
+function is_category($value){
+    return preg_match('/[123]/', $value) === 1;
 }

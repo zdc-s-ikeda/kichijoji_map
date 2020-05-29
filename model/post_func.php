@@ -90,7 +90,7 @@ function dd($var){
   exit();
 }
 
-function insert_post_place($place_name, $user_id, $comment, $img, $lat, $lng, $url, $link){
+function insert_post_place($place_name, $user_id, $comment, $img, $lat, $lng, $url, $category, $link){
     $log = set_time();
     $status = 0;
     $sql = "INSERT INTO
@@ -103,6 +103,7 @@ function insert_post_place($place_name, $user_id, $comment, $img, $lat, $lng, $u
                     lat,
                     lng,
                     url,
+                    category,
                     created_date,
                     updated_date)
             VALUES(
@@ -114,6 +115,7 @@ function insert_post_place($place_name, $user_id, $comment, $img, $lat, $lng, $u
                 '{$lat}',
                 '{$lng}',
                 '{$url}',
+                '{$category}',
                 '{$log}',
                 '{$log}')";
     return result_query($link, $sql);

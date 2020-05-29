@@ -6,7 +6,16 @@
     <style>
       body {
         color: #6b6b6b;
-        padding: 20px;
+        background-color: #faf5e4;
+        padding: 0px;
+        margin: 0px;
+      }
+      #header {
+        background-color: #f8b400;
+        width: 100%
+      }
+      #article1 {
+        padding: 40px;
       }
       #map_box {
         width: 500px;
@@ -16,8 +25,7 @@
         display: inline;
       }
       .icon {
-        width: 70px;
-        height: 70px;
+        width: 130px;
       }
       #place_order {
         width: 30px;
@@ -50,77 +58,72 @@
         text-align: center;
       }
       #logo {
-        width: 20%;
+        width: 45%;
       }
 
     </style>
 </head>
 <body>
-    <label><img id="logo" src="../view/logo.png"></label>
-    <div id="map_bottom">
-    <li><a href="../top/top.php"><img class="icon" src="../view/home.png" alt="ホーム"></a></li>
-    <li><a href="../mypage/mypage.php"><img class="icon" src="../view/mypage.png" alt="ホーム"></a></li>
-    <li><a href="../route/route.php"><img class="icon" src="../view/myroute.png" alt="マイルート"></a></li>
-    <li><a href="../post/post.php"><img class="icon" src="../view/post.png" alt="投稿"></a></li>
-    </div>
-    
-    <section id="sidebar">
-    <p id="sidebar_list">リスト一覧</p>
+    <section id="header">
+      <label><img id="logo" src="../view/logo.png"></label>
+      <div id="map_bottom">
+      <li><a href="../mypage/mypage.php"><img class="icon" src="../view/home.png" alt="ホーム"></a></li>
+      <li><a href="../route/route.php"><img class="icon" src="../view/myroute_clicked.png" alt="マイルート"></a></li>
+      <li><a href="../post/post.php"><img class="icon" src="../view/post.png" alt="投稿"></a></li>
+      </div>
     </section>
     
-    <h2>一覧</h2>
-      <?php if(count($post_place_list) > 0){ ?>
-        <table>
-            <thead>
-                <tr>
-                    <th>場所名</th>
-                    <th>コメント</th>
-                    <th>URL</th>
-                    <th>表示</th>
-                    <th>順番</th>
-                    <th></th>
-                </tr>
-            </thead>
-            <tbody>
-                <?php foreach($post_place_list as $place){ ?>
-                    <tr>
-                        <td><?php echo h($place['place_name']); ?></td>
-                        <td><?php echo h($place['comment']); ?></td>
-                        <td><a href="<?php echo h($place['url']); ?>"><?php echo h($place['url']); ?></a></td>
-                        <td>
-                            <button
-                                class="display"
-                                data-lat="<?php echo h($place['lat']);?>"
-                                data-lng="<?php echo h($place['lng']);?>"
-                                data-name="<?php echo h($place['place_name']); ?>">
-                                表示
-                            </button>
-                        </td>
-                        <td>
-                          <form method="post" action="../route/place_order.php">
-                            <div>
-                              <input id="place_order" type="number" name="place_order" value="<?php echo h($place['place_order']); ?>">
+    <section id="article1">
+      <h2>一覧</h2>
+        <?php if(count($post_place_list) > 0){ ?>
+          <table>
+              <thead>
+                  <tr>
+                      <th>場所名</th>
+                      <th>コメント</th>
+                      <th>表示</th>
+                      <th>順番</th>
+                      <th></th>
+                  </tr>
+              </thead>
+              <tbody>
+                  <?php foreach($post_place_list as $place){ ?>
+                      <tr>
+                          <td><a href="<?php echo h($place['url']); ?>"><?php echo h($place['place_name']); ?></a></td>
+                          <td><?php echo h($place['comment']); ?></td>
+                          <td>
+                              <button
+                                  class="display"
+                                  data-lat="<?php echo h($place['lat']);?>"
+                                  data-lng="<?php echo h($place['lng']);?>"
+                                  data-name="<?php echo h($place['place_name']); ?>">
+                                  表示
+                              </button>
+                          </td>
+                          <td>
+                            <form method="post" action="../route/place_order.php">
+                              <div>
+                                <input id="place_order" type="number" name="place_order" value="<?php echo h($place['place_order']); ?>">
+                                <input type="hidden" name="place_id" value="<?php echo h($place['place_id']); ?>">
+                                <input class="post_place_list_button" type="submit" value="変更">
+                              </div>
+                            </form>
+                          </td>
+                          <td>
+                            <form method="post" action="../route/place_list_delete.php">
                               <input type="hidden" name="place_id" value="<?php echo h($place['place_id']); ?>">
-                              <input type="hidden" name="route_id" value="<?php echo h($place['route_id']); ?>">
-                              <input class="post_place_list_button" type="submit" value="変更">
-                            </div>
-                          </form>
-                        </td>
-                        <td>
-                          <form method="post" action="../route/place_list_delete.php">
-                            <input type="hidden" name="place_id" value="<?php echo h($place['place_id']); ?>">
-                            <input type="hidden" name="route_id" value="<?php echo h($place['route_id']); ?>">
-                            <input class="post_place_list_button" type="submit" value="削除">
-                          </form>
-                        </td>
-                    </tr>
-                <?php } ?>
-            </tbody>
-        </table>
-    <?php } else { ?>
-        <p>登録された場所はありません。</p>
-    <?php } ?>
-    </form>
+                              <input class="post_place_list_button" type="submit" value="削除">
+                            </form>
+                          </td>
+                      </tr>
+                  <?php } ?>
+              </tbody>
+          </table>
+      <?php } else { ?>
+          <p>登録された場所はありません。</p>
+      <?php } ?>
+      </form>
+    </section>
     
     <p id="search_result"></p>
     <div id="map_box"></div>
@@ -133,74 +136,12 @@
           map_box,
           {
             center: new google.maps.LatLng(place_list[0]["lat"],place_list[0]["lng"]),
-            zoom: 12,
+            zoom: 15,
             disableDefaultUI: true,
             zoomControl: true,
             clickableIcons: false,
           }
         );
-        // // ジオコーダーの生成
-        // var geocoder = new google.maps.Geocoder();
-        // document.getElementById('search')
-        //   .addEventListener(
-        //     'click',
-        //     function(){
-        //       geocoder.geocode(
-        //         // 第一引数にジオコーディングのオプションを設定
-        //         {
-        //           address: document.getElementById('address').value
-        //         },
-        //         // 第二引数に結果取得時の動作を設定
-        //         function(results, status){
-        //           // 失敗時の処理
-        //           if(status !== 'OK'){
-        //             alert('ジオコーディングに失敗しました。結果: ' + status);
-        //             return;
-        //           }
-        //           // 成功した場合、resultsの0番目に結果が取得される。
-        //           if(!results[0]){
-        //             alert('結果が取得できませんでした');
-        //             return;
-        //           }
-        //           // マップの中心を移動
-        //           map.panTo(results[0].geometry.location);
-        
-        //           document.getElementById('search_result').innerHTML = results[0].formatted_address;
-        //         }
-        //       );
-        //     }
-        //   );
-        
-        // // クリック位置をリバースジオコーディング
-        // map.addListener('click', function(e){
-        //   geocoder.geocode({
-        //     location: e.latLng
-        //   }, function(results, status){
-        //     if(status !== 'OK'){
-        //       alert('リバースジオコーディングに失敗しました。結果: ' + status);
-        //       return;
-        //     }
-        
-        //     // console.log(results);
-        //     if(!results[0]){
-        //       alert('結果が取得できませんでした。');
-        //       return;
-        //     }
-        
-        //     // クリックした位置にマーカーを立てる
-        //     var added_marker = new google.maps.Marker({
-        //       position: e.latLng, // クリックした箇所
-        //       map: map,
-        //       animation: google.maps.Animation.DROP
-        //     });
-        //     // マーカーに情報ウィンドウを紐付け、
-        //     // リバースジオコーディングで取得した住所を表示する。
-        //     var infoWindow = new google.maps.InfoWindow({
-        //       content: results[0].formatted_address,
-        //     });
-        //     infoWindow.open(map, added_marker);
-        //   })
-        // });
         var display_buttons = Array.from(document.getElementsByClassName('display'));
         //各ボタンにイベントを設定
         display_buttons.forEach(

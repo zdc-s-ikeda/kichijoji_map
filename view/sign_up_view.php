@@ -3,10 +3,34 @@
 <head>
   <meta charset="utf-8">
   <title>新規登録</title>
-  <!--スタイルシートのリンク記入-->
-  <link type="text/css" rel="stylesheet" href="">
+  <style type="text/css">
+    body {
+      color: #6b6b6b;
+      background-color: #faf5e4;
+      margin: 0px;
+    }
+    header {
+      background-color: #f8b400;
+    }
+    #logo {
+      width: 45%;
+    }
+    .content {
+      padding: 20px;
+    }
+    .login_link {
+      margin: 0 auto;
+    }
+    .login_button {
+      margin-top: 20px;
+      width: 20%;
+    }
+  </style>
 </head>
 <body>
+  <header>
+    <label><img id="logo" src="../view/logo.png"></label>
+  </header>
   <div class="content">
     <div class="sign_up">
       <div class="err-msg"><?php display_error($errors); ?></div>
@@ -27,7 +51,7 @@
         <div><input type="submit" value="登録"></div>
       </form>
       <!--ログインページのリンク記入-->
-      <div class="login-link"><a href="../login/login.php">ログイン</a></div>
+      <div class="login-link"><a href="../login/login.php"><img class="login_button" src="../view/login.png" alt="ログイン"></a></div>
     </div>
   </div>
 </body>

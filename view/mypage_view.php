@@ -7,7 +7,9 @@
       
       body {
          color: #6b6b6b;
-         padding: 40px;
+         background-color: #faf5e4;
+         padding: 0px;
+         margin: 0px;
       }
       #map_box {
         width: 500px;
@@ -22,6 +24,7 @@
         word-wrap: break-word;
       }
       #header {
+        background-color: #f8b400;
         width: 100%;
       }
       #header_li li {
@@ -31,10 +34,11 @@
         display: flex;
       }
       .icon {
-        width: 100px;
+        width: 130px;
       }
       #center {
         flex: 1;
+        padding: 40px;
       }
       #add {
         width: 300px;
@@ -59,7 +63,7 @@
       }
       #sidebar {
         color: #ffffff;
-        background-color: #0fabbc;
+        background-color: #f8b400;
         width: 350px;
         height: 1000px;
       }
@@ -71,7 +75,7 @@
         font-weight: bold;
       }
       #logo {
-        width: 20%;
+        width: 45%;
       }
       #map_bottom li {
         display: inline;
@@ -82,8 +86,7 @@
     <section id="header">
     <label><img id="logo" src="../view/logo.png"></label>
       <div id="map_bottom">
-    <li><a href="../top/top.php"><img class="icon" src="../view/home.png" alt="ホーム"></a></li>
-    <li><a href="../mypage/mypage.php"><img class="icon" src="../view/mypage.png" alt="ホーム"></a></li>
+    <li><a href="../mypage/mypage.php"><img class="icon" src="../view/home_clicked.png" alt="ホーム"></a></li>
     <li><a href="../route/route.php"><img class="icon" src="../view/myroute.png" alt="マイルート"></a></li>
     <li><a href="../post/post.php"><img class="icon" src="../view/post.png" alt="投稿"></a></li>
     </div>
@@ -91,6 +94,13 @@
     
     <div id="main">
     <section id="center">
+    <!--<form method="post"　action="mypage.php">-->
+    <!--<div id="category">-->
+    <!--<button name="category" value="1">あそび</button>-->
+    <!--<button name="category" value="2">食事</button>-->
+    <!--<button name="category" value="3">休憩</button>-->
+    <!--</div>-->
+    <!--</form>-->
     <div id="map_box"></div>
       
     <div id="message">
@@ -112,38 +122,35 @@
     </section>
     <section id="sidebar">
       
-      <p id="sidebar_list_name">リスト名：<?php print h($route_table[0]['route_name']); ?></p>
-      <form>
-      <a href="../user_page.php">投稿者：<?php print h($route_table[0]['user_id']); ?></a>
-      <input type="hidden" name="use_id" value="<?php print h($route_table[0]['user_id']); ?>">
-      </form>
+    <!--  <p id="sidebar_list_name">リスト名：<?php print h($route_table[0]['route_name']); ?></p>-->
+    <!--  <form>-->
+    <!--  <a href="../user_page.php">投稿者：<?php print h($route_table[0]['user_id']); ?></a>-->
+    <!--  <input type="hidden" name="use_id" value="<?php print h($route_table[0]['user_id']); ?>">-->
+    <!--  </form>-->
       
-      <!--<div class="side_item">-->
-      <!--<?php foreach ($side_items as $side_item) { ?>-->
-      <!--<p></p><?php print h($side_item['place_name']); ?>-->
-      <!--<label>URL：<a href="<?php print h($side_item['url']); ?>"><?php print h($side_item['url']); ?></a></label></p>-->
-      <!--<img src="../images/<?php print h($side_item['img']); ?>" class="side_img">-->
-      <!--<p>コメント：<?php print h($side_item['comment']); ?></p>-->
-      <!--<?php } ?>-->
-      <!--</div>-->
+    <!--  <div class="side_item">-->
+    <!--  <?php foreach ($list_items as $list_item) { ?>-->
+    <!--  <p></p><?php print h($list_item['place_name']); ?>-->
+    <!--  <label>URL：<a href="<?php print h($list_item['url']); ?>"><?php print h($list_item['url']); ?></a></label></p>-->
+    <!--  <img src="../images/<?php print h($list_item['img']); ?>" class="side_img">-->
+    <!--  <p>コメント：<?php print h($list_item['comment']); ?></p>-->
+    <!--  <?php } ?>-->
+    <!--  </div>-->
       
       <table class="side_item">
-        <?php foreach ($side_items as $side_item) { ?>
+        <?php foreach ($list_items as $list_item) { ?>
         <tr>
-          <td id="place_name"><?php print h($side_item['place_name']); ?></td>
-          <td>URL：<a href="<?php print h($side_item['url']); ?>"><?php print h($side_item['url']); ?></a></label></td>
+          <td id="place_name"><?php print h($list_item['place_name']); ?></td>
+          <td>URL：<a href="<?php print h($list_item['url']); ?>"><?php print h($list_item['url']); ?></a></label></td>
         </tr>
         <tr>
-          <td><img src="../images/<?php print h($side_item['img']); ?>" class="side_img"></td>
-          <td>コメント：<?php print h($side_item['comment']); ?></td>
+          <td><img src="<?php print "../images/" . h($list_item['img']); ?>" class="side_img"></td>
+          <td>コメント：<?php print h($list_item['comment']); ?></td>
         </tr>
         <?php } ?>
       </table>
-      
     </section>
     </div>
-
-    
 
     <script>
       function init(){
