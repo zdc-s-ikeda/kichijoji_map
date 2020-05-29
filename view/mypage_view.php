@@ -12,9 +12,10 @@
          margin: 0px;
       }
       #map_box {
-        width: 500px;
+        width: 800px;
         height: 500px;
         text-align: center;
+        margin: 0 auto;
       }
       .side_img {
         width: 100px;
@@ -158,8 +159,8 @@
     <script>
       function init(){
         var kichijoji = {
-                    lat: 35.7031754,
-                    lng: 139.5713603
+                    lat: 35.702969,
+                    lng: 139.579765
                 };
         //$itemsをjs形式で呼び出し
         var items = JSON.parse('<?php echo $items_json; ?>');
@@ -171,7 +172,7 @@
           map_box,
           {
             center: kichijoji,
-            zoom: 12,
+            zoom: 17,
             disableDefaultUI: true,
             zoomControl: true,
             clickableIcons: false,

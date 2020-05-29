@@ -49,6 +49,7 @@ if (is_post() === TRUE) {
     }
 } else {
     $items = get_post_place($user_id, $link);
+    var_dump($items);
 
 }
 //$itemsをjs形式に変換(itemsには、name, comment, imgが一つずつ入っている)

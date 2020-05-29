@@ -135,3 +135,7 @@ function display_success($success){
         "<p>" . print h($success) . "</p>";
     }
 }
+
+function is_category($value){
+    return preg_match('/[123]/', $value) === 1;
+}
