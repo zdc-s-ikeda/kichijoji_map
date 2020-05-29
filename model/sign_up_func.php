@@ -125,7 +125,7 @@ function is_valid_gender($value){
 
 //username, passwdチェック用 n文字以上の半角英数字か
 function is_match($value, $length){
-    return preg_match('/\A[a-z\d]{' . $length . ',}+\z/', $value) === 1;
+    return preg_match('/\A[a-zA-Z\d]{' . $length . ',}+\z/', $value) === 1;
 }
 
 //username, passwdチェック用 文字数制限
